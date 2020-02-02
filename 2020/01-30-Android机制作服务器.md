@@ -10,19 +10,30 @@
 
 + 打开LinuxDeploy
     + 顶部菜单栏设置 -> PATH变量：
-        + 修改成busybox默认路径 `/system/xbin` ，低配置手机建议把 屏幕常亮，锁定WIFI，CPU唤醒 都勾选上
+        + 修改成busybox默认路径 `/system/xbin` ，(修改完后需要点击更新环境) 低配置手机建议把 屏幕常亮，锁定WIFI，CPU唤醒 都勾选上
     + 返回主页，点击左下角的设置图标：
         + 发行版GNU/Linux: `Ubuntu`
         + 架构: `armhf` (架构需要根据手机硬件选择，建议默认选项)
-        + 发行版本: `xenial`
+        + 发行版本: `bionic`
         + 源地址: `http://mirrors.ustc.edu.cn/ubuntu-ports`
-        + 安装路径: `${ENV_DIR}/linux.img` (手机自带存储空间根目录) 或  `${EXTERNAL_STORAGE}/linux.img` (sdcard)
+        + 安装路径: `${ENV_DIR}/linux.img` (手机自带存储空间根目录) 或  `${EXTERNAL_STORAGE}/linux.img` (sdcard)  建议默认
         + 修改用户名和密码
+        + 特权用户:  默认值或 `root`
         + 本地化: `zh_CN.UTF-8`
         + 勾选SSH
     + 退出系统设置界面，点击主界面右上角，选择安装，界面出现`<<<deploy` 完成安装，先点击停止按钮，再按启动按钮
 
 SSH进入系统，可以安装命令行增强工具
+
+###  踩坑
+1. permission denied 
+
+```
+# 特权用户修改为 root
+# 将用户名添加到分组aid_inet
+su
+sudo usermod -aG aid_inet 用户名
+```
 
 #### 安装 Zsh
 ```
