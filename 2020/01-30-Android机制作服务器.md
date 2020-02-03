@@ -28,34 +28,38 @@ SSH进入系统，可以安装命令行增强工具
 ###  踩坑
 1. permission denied 
 
-```
+```bash
 # 特权用户修改为 root
 # 将用户名添加到分组aid_inet
-su
-sudo usermod -aG aid_inet 用户名
+$ su
+$ sudo usermod -aG aid_inet 用户名
 ```
+
+2. ARM架构跑Node.js 坑很多，慎入
+
+3. docker守护进程无法运行，待查找问题
 
 #### 安装 Zsh
 ```
-sudo apt install zsh
+$ sudo apt install zsh
 ```
 #### 将 Zsh 设置为默认 Shell
 ```
-chsh -s /bin/zsh
+$ chsh -s /bin/zsh
 ```
 
 #### 安装 Git
 ```
-sudo apt install git
+$ sudo apt install git
 ```
 
 #### 安装 Oh My Zsh
 ```
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
 
 如果wget执行报错，可以在 [ohmyz官网](https://ohmyz.sh/) 下载install.sh文件，手动安装
 ```
-sudo chmod +x install.sh
-sh install.sh
+$ sudo chmod +x install.sh
+$ sh install.sh
 ```
