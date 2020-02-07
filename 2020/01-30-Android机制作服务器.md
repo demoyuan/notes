@@ -63,3 +63,28 @@ $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -
 $ sudo chmod +x install.sh
 $ sh install.sh
 ```
+
+### 开机启动自定义脚本
+需要到设置里面启用 `允许使用初始化系统`，
+由于ubuntu 18.04 不再使用 inited 管理系统，改用 systemd ，所以需要手动配置
+```bash
+$ sudo vim /etc/systemd/system/rc-local.service
+```
+添加上
+```
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+```
+创建脚本
+```
+$ sudo touch /etc/rc.local
+$ sudo chmod 755 /etc/rc.local
+```
+编写脚本
+```bash
+#!/bin/bash
+echo "执行Frp脚本"
+# 注意，由于软件默认初始用户是root ，所以最好使用根路径，可以在设置里面打开调试模式查看输出日志
+/home/username/connenct_frp.sh
+```
